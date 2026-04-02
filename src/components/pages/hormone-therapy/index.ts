@@ -1,0 +1,9 @@
+export { default as Hero } from "./Hero";
+export { default as BiologySection } from "./BiologySection";
+export { default as TreatmentCards } from "./TreatmentCards";
+export { default as JourneySection } from "./JourneySection";
+export { default as LabsSection } from "./LabsSection";
+export { default as PersonasSection } from "./PersonasSection";
+export { default as WhyNuHealth } from "./WhyNuHealth";
+export { default as TestimonialsSection } from "./TestimonialsSection";
+export { default as FinalCTA } from "./FinalCTA";
