@@ -79,7 +79,7 @@ export default function WeightLossPricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-5 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-5 items-start overflow-visible">
           {pricingCards.map((card, idx) => (
             <div
               key={idx}
@@ -87,12 +87,12 @@ export default function WeightLossPricing() {
                 card.isFeatured ? 'bg-white md:scale-105 pricing-featured' : 'bg-white/[0.07] backdrop-blur-md'
               } rounded-[1.25rem] p-8 ${
                 card.isFeatured
-                  ? 'relative'
+                  ? 'relative overflow-visible'
                   : 'border border-white/[0.12] hover:bg-white/[0.12] transition-all duration-500 hover:-translate-y-1'
               } card-shine`}
             >
               {card.isFeatured && (
-                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D8BDA3] text-chocolate text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-[#D8BDA3]/30">
+                <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D8BDA3] text-chocolate text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-[#D8BDA3]/30 z-10">
                   Most Popular
                 </span>
               )}

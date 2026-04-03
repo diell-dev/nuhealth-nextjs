@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Lora } from "next/font/google";
 import "./globals.css";
+import Nav from "@/components/layout/Nav";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${lora.variable}`}>
       <body className="font-sans antialiased bg-cream text-chocolate">
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );

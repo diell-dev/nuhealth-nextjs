@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import Nav from "@/components/layout/Nav";
-import Footer from "@/components/layout/Footer";
 import TrustMarquee from "@/components/sections/TrustMarquee";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import {
@@ -177,17 +175,6 @@ export default function PerformancePage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
         />
       ))}
-      <Nav
-        variant="dark"
-        links={[
-          { label: "Protocols", href: "#protocols" },
-          { label: "How It Works", href: "#journey" },
-          { label: "FAQ", href: "#faq" },
-        ]}
-        ctaText="Start Assessment"
-        ctaHref="#assessment"
-      />
-
       <PerformanceAnimations />
       <HeroSection />
 
@@ -216,8 +203,6 @@ export default function PerformancePage() {
       />
 
       <FinalCTA />
-
-      <Footer />
     </>
   );
 }

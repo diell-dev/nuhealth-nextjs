@@ -32,26 +32,25 @@ export default function WeightLossHowItWorks() {
 
   return (
     <section id="how" className="bg-[#F0F4EF] relative overflow-hidden">
-      {/* Three.js scroll-reactive canvas background would go here */}
+      {/* Three.js scroll-reactive canvas background */}
       <canvas
         id="how-gl"
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{ zIndex: 0 }}
       />
 
-      {/* Body silhouette canvases — inside pin-wrap so they stay in view during scroll */}
-      <canvas
-        id="silhouette-left"
-        className="hidden lg:block absolute pointer-events-none"
-        style={{ zIndex: 1, left: 0, top: 0, width: '20vw', height: '100%' }}
-      />
-      <canvas
-        id="silhouette-right"
-        className="hidden lg:block absolute pointer-events-none"
-        style={{ zIndex: 1, right: 0, top: 0, width: '20vw', height: '100%' }}
-      />
-
       <div className="how-pin-wrap py-20 lg:py-28 relative z-10">
+        {/* Body silhouette canvases — inside pin-wrap so they stay in view during pinned scroll */}
+        <canvas
+          id="silhouette-left"
+          className="hidden lg:block absolute pointer-events-none"
+          style={{ zIndex: 1, left: 0, top: 0, width: '20vw', height: '100%' }}
+        />
+        <canvas
+          id="silhouette-right"
+          className="hidden lg:block absolute pointer-events-none"
+          style={{ zIndex: 1, right: 0, top: 0, width: '20vw', height: '100%' }}
+        />
         <div className="nh-container">
           {/* Header */}
           <div className="how-header text-center mb-16 lg:mb-20">

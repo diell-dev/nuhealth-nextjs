@@ -136,6 +136,10 @@ export default function WeightLossAnimations() {
             pin: true,
             scrub: 0.3,
             anticipatePin: 1,
+            onUpdate: (self: any) => {
+              // Feed scroll progress to Three.js shader + silhouettes
+              (window as any).__howScrollProgress = self.progress;
+            }
           }
         });
 
@@ -188,6 +192,9 @@ export default function WeightLossAnimations() {
             scrub: 0.3,
             anticipatePin: 1,
             onUpdate: (self: any) => {
+              // Feed scroll progress to Three.js shader + silhouettes
+              (window as any).__howScrollProgress = self.progress;
+
               const progress = self.progress;
               const totalSteps = steps.length;
               const activeIdx = Math.min(Math.floor(progress * totalSteps), totalSteps - 1);

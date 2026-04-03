@@ -1,6 +1,4 @@
 import { Metadata } from 'next'
-import Nav from '@/components/layout/Nav'
-import Footer from '@/components/layout/Footer'
 import TrustMarquee from '@/components/sections/TrustMarquee'
 import FAQAccordion from '@/components/sections/FAQAccordion'
 import Hero from '@/components/pages/sexual-health/Hero'
@@ -177,17 +175,6 @@ export default function SexualHealthPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
         />
       ))}
-      <Nav
-        variant="dark"
-        links={[
-          { label: 'Treatments', href: '#selector' },
-          { label: 'How It Works', href: '#how' },
-          { label: 'FAQ', href: '#faq' },
-        ]}
-        ctaText="Start Consultation"
-        ctaHref="/sexual-health#consultation"
-      />
-
       <SexualHealthAnimations />
       <Hero />
       <TrustMarquee />
@@ -204,8 +191,6 @@ export default function SexualHealthPage() {
       <FAQAccordion items={faqItems} />
       <FinalCTA />
       <AIAssistant />
-
-      <Footer />
     </>
   )
 }

@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import Nav from '@/components/layout/Nav';
-import Footer from '@/components/layout/Footer';
 import TrustMarquee from '@/components/sections/TrustMarquee';
 import StickyCta from '@/components/sections/StickyCta';
 import FAQAccordion from '@/components/sections/FAQAccordion';
@@ -20,6 +18,8 @@ import WeightLossLocalPresence from '@/components/pages/weight-loss/WeightLossLo
 import WeightLossConsultationCTA from '@/components/pages/weight-loss/WeightLossConsultationCTA';
 import WeightLossFinalCTA from '@/components/pages/weight-loss/WeightLossFinalCTA';
 import WeightLossAnimations from '@/components/pages/weight-loss/WeightLossAnimations';
+import WeightLossSilhouetteGL from '@/components/pages/weight-loss/WeightLossSilhouetteGL';
+import WeightLossHowGL from '@/components/pages/weight-loss/WeightLossHowGL';
 
 const faqData = [
   {
@@ -263,18 +263,9 @@ export default function WeightLossPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
         />
       ))}
-      <Nav
-        links={[
-          { label: 'Treatments', href: '#treatments' },
-          { label: 'How It Works', href: '#how' },
-          { label: 'Pricing', href: '#pricing' },
-          { label: 'Results', href: '#results' }
-        ]}
-        ctaText="Start Consultation"
-        ctaHref="/weight-loss#consultation"
-      />
-
       <WeightLossAnimations />
+      <WeightLossSilhouetteGL />
+      <WeightLossHowGL />
       <main className="overflow-hidden">
         <WeightLossHero />
         <TrustMarquee />
@@ -306,7 +297,6 @@ export default function WeightLossPage() {
         <WeightLossFinalCTA />
       </main>
 
-      <Footer />
       <StickyCta />
     </>
   );

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { Nav, Footer } from "@/components/layout";
 import HormoneTherapyHero from "@/components/pages/hormone-therapy/Hero";
 import TrustMarquee from "@/components/sections/TrustMarquee";
 import BiologySection from "@/components/pages/hormone-therapy/BiologySection";
@@ -227,18 +226,6 @@ export default function HormoneTherapyPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(block) }}
         />
       ))}
-      <Nav
-        links={[
-          { label: "Why NuHealth", href: "#why" },
-          { label: "Treatments", href: "#treatments" },
-          { label: "How It Works", href: "#journey" },
-          { label: "FAQ", href: "#faq" },
-        ]}
-        ctaText="Start Assessment"
-        ctaHref="/hormone-therapy#assessment"
-        variant="light"
-      />
-
       <HormoneTherapyAnimations />
       <HormoneTherapyHero />
 
@@ -261,8 +248,6 @@ export default function HormoneTherapyPage() {
       <FAQAccordion items={faqItems} title="Frequently Asked Questions" />
 
       <FinalCTA />
-
-      <Footer />
     </main>
   );
 }
