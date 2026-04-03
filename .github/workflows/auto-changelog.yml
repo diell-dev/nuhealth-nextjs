@@ -1,0 +1,62 @@
+name: Auto Changelog
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Update CHANGELOG.md
+        run: |
+          COMMIT_HASH=$(git rev-parse --short HEAD)
+          COMMIT_MSG=$(git log -1 --pretty=format:"%s")
+          COMMIT_AUTHOR=$(git log -1 --pretty=format:"%an")
+          COMMIT_DATE=$(date -u +"%Y-%m-%d %H:%M UTC")
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+          if echo "$COMMIT_MSG" | grep -qi "merge"; then
+            CHANGE_TYPE="merge"
+          elif echo "$COMMIT_MSG" | grep -qi "fix"; then
+            CHANGE_TYPE="fix"
+          elif echo "$COMMIT_MSG" | grep -qi "feat\|add\|new"; then
+            CHANGE_TYPE="feature"
+          elif echo "$COMMIT_MSG" | grep -qi "refactor\|clean"; then
+            CHANGE_TYPE="refactor"
+          elif echo "$COMMIT_MSG" | grep -qi "docs\|readme"; then
+            CHANGE_TYPE="docs"
+          elif echo "$COMMIT_MSG" | grep -qi "style\|css\|design"; then
+            CHANGE_TYPE="style"
+          else
+            CHANGE_TYPE="update"
+          fi
+
+          FILES_CHANGED=$(git diff --shortstat HEAD~1 HEAD 2>/dev/null || echo "initial commit")
+
+          NEW_ENTRY="## [$COMMIT_HASH] - $COMMIT_DATE\n- **Type:** $CHANGE_TYPE\n- **Branch:** $BRANCH\n- **Author:** $COMMIT_AUTHOR\n- **Message:** $COMMIT_MSG\n- **Changes:** $FILES_CHANGED\n"
+
+          if [ ! -f CHANGELOG.md ]; then
+            echo -e "# Changelog\n\nAll notable changes to this project will be logged automatically.\n\n$NEW_ENTRY" > CHANGELOG.md
+          else
+            sed -i '' "3a\\
+            " CHANGELOG.md 2>/dev/null || sed -i "3a\\" CHANGELOG.md
+            sed -i '' "4i\\
+$(echo -e "$NEW_ENTRY")" CHANGELOG.md 2>/dev/null || sed -i "4i $(echo -e "$NEW_ENTRY")" CHANGELOG.md
+          fi
+
+      - name: Commit and push changelog
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update changelog [skip ci]"
+          git push
